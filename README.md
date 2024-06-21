@@ -13,6 +13,9 @@ Install photontorch and its dependencies.
 1. Add netlist based simulation capability and use a GUI program such as xschem to generate netlists from schematics.
 2. Enable co-integration with ngspice or similar tool for co-simulation with electronics.
 3. Create a generic PDK file for SiP processes.
+4. Convert APD synthesis Matlab code to Python
+5. Add filter synthesis code for CROW and SCISSOR topologies
+
 
 
 ## License
