@@ -80,41 +80,6 @@ k2 = (1.-abs(zn2).^2)   % Coupling coefficients
 t2 = sqrt(1.-k2);      % Coupler thru transmission
 phi2 = angle(zn2);     % Phase shifts in the rings
 
-
-%% Verify the Ring Filter Response and Plot it
-
-% Top Arm rings
-Htop = filt([1], [1], 1);
-
-
-for j = 1:ord1
-    ejphi = exp(i*phi1(j));
-    t = t1(j);
-    sr = sqrt(k1(j));
-    sm = sqrt(km);
-    cr = sqrt(1-k1(j));
-    cm = sqrt(1-km);
-    %ejphi = exp(i*phi);
-
-    bb = [0 -sr*sm*r*ejphi];
-    aa = [1 -cr*cm*r*ejphi];
-    Hr =  filt(bb, aa, 1);
-
-    bb1 = [cr -cm*r*ejphi];
-    Hm = filt(bb1, aa, 1);
-   
-    Htop = Htop*Hm;
-    
-    [nn, dd] = tfdata(Hr,'v');
-    [nn2, dd2] = tfdata(Hm,'v');
-    ww = linspace(-pi, pi, 2^12);
-    hr = freqz(nn, dd, ww);
-    hm = freqz(nn2, dd2, ww);
-
-    %plot(ww*20/pi,mag2db(abs(hr)), 'b', 'lineWidth', 1)
-    %plot(ww*20/pi,mag2db(abs(hm)), 'lineWidth', 1.5)
-end    
-
 % Plot Result Summary
 
 fprintf('Top Arm Rings:\n');
